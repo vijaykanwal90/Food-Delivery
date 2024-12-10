@@ -59,4 +59,19 @@
 .res-card:hover {
   cursor: pointer;
 }
+
+.shimmer-container {
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.shimmer-card {
+  background-color: #d3d3d3;
+  border-radius: 5px;
+  width: 300px;
+  height: 300px;
+  margin: 10px;
+}
 /*# sourceMappingURL=index.9e4c6fd2.css.map */

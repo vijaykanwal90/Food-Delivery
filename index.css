@@ -16,6 +16,7 @@
     display: flex;
     font-size: 24px;
     list-style-type: none;
+    text-decoration: none;
 
 }
 .nav-items > ul> li{
@@ -29,6 +30,8 @@
     padding: 20px;
     justify-content: center;
     align-items: center;
+    text-decoration: none;
+
     /* height: 100%; */
 }
 .res-card{
@@ -40,13 +43,23 @@
     border: 2px solid black;
     border-radius: 5px;
     /* height: inherit; */
+    text-decoration: none;
+    color:inherit;
+
+
 
     
 }
 .res-card img{
     width: 300px;
     height:300px;
+    text-decoration: none;
 }
+/* .res-card *{
+    color:rgb(11, 9, 9);
+    text-decoration: none;
+    
+} */
 .search-filter{
     display: flex;
     padding:20px;

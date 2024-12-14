@@ -2,6 +2,8 @@ import RestaurantCard from "./RestaurantCard";
 import resList from "../utils/RestaurantData";
 import { useState, useEffect} from "react";
 import Shimmer from "./Shimmer";
+import { redirect } from "react-router";
+import { Link } from "react-router";
 const Body = () => {
   const newResData = [
     {
@@ -116,6 +118,24 @@ const Body = () => {
       fetchData()
 
   },[])
+  const restaurantMenu = () =>{
+    console.log("clicked")
+  }
+  // useEffect (()=>{
+
+  // }) this useEffect will be called on every render
+
+
+  // useEffect (()=>{
+
+  // }[]) this useEffect will be called on initial render only
+
+
+  // useEffect (()=>{
+
+  // },[searchText]) this useEffect will be called when searchText updates
+
+
   if(listOfRestaurants.length===0){
     return (
       // <div>Loading..........</div>
@@ -170,7 +190,8 @@ const Body = () => {
                  <RestaurantCard  resInfo={resData[5]}/> */}
 
         {listOfRestaurants.map((restaurant) => (
-          <RestaurantCard key={restaurant.info.id} resInfo={restaurant} />
+         <Link key={restaurant.info.id} style={{textDecoration:"none",color:"inherit"}}
+         to={"/restaurant/" + restaurant.info.id}> <RestaurantCard resInfo={restaurant}> </RestaurantCard></Link>
         ))}
       </div>
     </div>

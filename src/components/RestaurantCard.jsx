@@ -14,7 +14,7 @@ const RestaurantCard = (props)=>{
          <div className="res-card">
             <span>{isOpen?"OPENED":"CLOSED"}</span>
          <img className="res-logo" alt="food-logo" src={CDN_LINK +cloudinaryImageId} />
-         <h3>{name}</h3>
+         <h3 style={{textDecoration:"none"}}>{name}</h3>
          {/* { if({isOpen}===True){
             <span>Hello</span>
          }else {

@@ -44,12 +44,21 @@
   height: 300px;
 }
 
-.search {
+.search-filter {
   padding: 20px;
+  display: flex;
+}
+
+.search {
+  margin: 5px;
 }
 
 .filter-btn {
   cursor: pointer;
+  width: 150px;
+  height: 24px;
+  margin-top: 4px;
+  font-size: 10px;
 }
 
 .res-logo {

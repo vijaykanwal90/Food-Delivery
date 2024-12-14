@@ -27457,12 +27457,12 @@ const Header = ()=>{
                     src: (0, _constants.LOGO)
                 }, void 0, false, {
                     fileName: "src/components/Header.jsx",
-                    lineNumber: 11,
+                    lineNumber: 12,
                     columnNumber: 17
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/Header.jsx",
-                lineNumber: 10,
+                lineNumber: 11,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27473,28 +27473,28 @@ const Header = ()=>{
                             children: "  Home      "
                         }, void 0, false, {
                             fileName: "src/components/Header.jsx",
-                            lineNumber: 15,
+                            lineNumber: 16,
                             columnNumber: 21
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
                             children: "  About Us    "
                         }, void 0, false, {
                             fileName: "src/components/Header.jsx",
-                            lineNumber: 16,
+                            lineNumber: 17,
                             columnNumber: 21
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
                             children: "  Contact Us     "
                         }, void 0, false, {
                             fileName: "src/components/Header.jsx",
-                            lineNumber: 17,
+                            lineNumber: 18,
                             columnNumber: 21
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
                             children: "  Cart     "
                         }, void 0, false, {
                             fileName: "src/components/Header.jsx",
-                            lineNumber: 18,
+                            lineNumber: 19,
                             columnNumber: 21
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
@@ -27508,31 +27508,31 @@ const Header = ()=>{
                                     children: login
                                 }, void 0, false, {
                                     fileName: "src/components/Header.jsx",
-                                    lineNumber: 19,
+                                    lineNumber: 20,
                                     columnNumber: 27
                                 }, undefined),
                                 "     "
                             ]
                         }, void 0, true, {
                             fileName: "src/components/Header.jsx",
-                            lineNumber: 19,
+                            lineNumber: 20,
                             columnNumber: 21
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/Header.jsx",
-                    lineNumber: 14,
+                    lineNumber: 15,
                     columnNumber: 17
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/Header.jsx",
-                lineNumber: 13,
+                lineNumber: 14,
                 columnNumber: 13
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/Header.jsx",
-        lineNumber: 9,
+        lineNumber: 10,
         columnNumber: 9
     }, undefined);
 };
@@ -27698,34 +27698,15 @@ const Body = ()=>{
         }
     ];
     const [listOfRestaurants, setlistOfRestaurants] = (0, _react.useState)([]);
+    const [searchText, setSearchText] = (0, _react.useState)("");
+    const [filteredData, setFilteredData] = (0, _react.useState)([]);
     const fetchData = async ()=>{
         try {
             const response = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.7040592&lng=77.10249019999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
             const result = await response.json();
-            // const response = await fetch("https://www.swiggy.com/api/seo/getListing?lat=12.960059122809971&lng=77.57337538383284&isDineoutCollection=false", {
-            //   "headers": {
-            //     "accept": "*/*",
-            //     "accept-language": "en-US,en;q=0.9",
-            //     "content-type": "application/json",
-            //     "latitude": "12.960059122809971",
-            //     "longitude": "77.57337538383284",
-            //     "priority": "u=1, i",
-            //     "sec-ch-ua": "\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"",
-            //     "sec-ch-ua-mobile": "?0",
-            //     "sec-ch-ua-platform": "\"Linux\"",
-            //     "sec-fetch-dest": "empty",
-            //     "sec-fetch-mode": "cors",
-            //     "sec-fetch-site": "same-origin",
-            //     "cookie": "__SW=BY0iZ5aC6yl3_fFfDyffpXTFAonLOpA9; _device_id=e8d24d46-c969-cae5-bfdc-076073fbca2a; fontsLoaded=1; _gcl_au=1.1.239490970.1732946437; _guest_tid=2df91f0c-5426-4213-b24c-0d1cd7275f58; _sid=hq03f049-8c1f-4157-9137-129c1ef8d37f; _gid=GA1.2.1110093267.1733857550; _gat_0=1; userLocation={%22address%22:%22Tuntowala%2C%20Morowala%2C%20Clement%20Town%2C%20Dehradun%2C%20Uttarakhand%20248002%2C%20India%22%2C%22area%22:%22%22%2C%22deliveryLocation%22:%22Clement%20Town%22%2C%22lat%22:30.2783241%2C%22lng%22:78.0059814}; dadl=true; _ga_34JYJ0BCRN=GS1.1.1733854968.5.1.1733857572.0.0.0; _ga=GA1.2.1741298733.1733857550",
-            //     "Referer": "https://www.swiggy.com/city/bangalore",
-            //     "Referrer-Policy": "strict-origin-when-cross-origin"
-            //   },
-            //   "body": "{\"sortAttribute\":\"relevance\",\"isFiltered\":false,\"queryId\":\"seo-data-9d136bde-2a4f-4e9e-9e51-ded8e9bfa222\",\"seoParams\":{\"apiName\":\"CityPage\",\"brandId\":\"\",\"seoUrl\":\"www.swiggy.com/city/bangalore\",\"pageType\":\"CITY_PAGE\",\"businessLine\":\"FOOD\"},\"widgetOffset\":{\"NewListingView_category_bar_chicletranking_TwoRows\":\"\",\"NewListingView_category_bar_chicletranking_TwoRows_Rendition\":\"\",\"Restaurant_Group_WebView_PB_Theme\":\"\",\"Restaurant_Group_WebView_SEO_PB_Theme\":\"\",\"collectionV5RestaurantListWidget_SimRestoRelevance_food_seo\":\"11\",\"inlineFacetFilter\":\"\",\"restaurantCountWidget\":\"\"},\"nextOffset\":\"CJY7ELQ4KIDo2PLLpvj2UTDUEA==\"}",
-            //   "method": "POST"
-            // });
-            // const result = await response.json()
-            console.log(result.data.cards[4].card.card.gridElements.infoWithStyle.restaurants);
-            setlistOfRestaurants(result.data.cards[4].card.card.gridElements.infoWithStyle.restaurants);
+            console.log(result);
+            // console.log(result.data.cards[0].card.card.gridElements.infoWithStyle.restaurants)
+            setlistOfRestaurants(result.data.cards[1].card.card.gridElements.infoWithStyle.restaurants);
         } catch (error) {
             console.log("fetching error" + error.message);
         }
@@ -27736,30 +27717,70 @@ const Body = ()=>{
     if (listOfRestaurants.length === 0) return(// <div>Loading..........</div>
     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _shimmerDefault.default), {}, void 0, false, {
         fileName: "src/components/Body.jsx",
-        lineNumber: 139,
+        lineNumber: 122,
         columnNumber: 7
     }, undefined));
+    const search = ()=>{
+        console.log(listOfRestaurants[0].info.name);
+        // fetchData()
+        // setlistOfRestaurants(result.data.cards[1].card.card.gridElements.infoWithStyle.restaurants)
+        const filtereddata = listOfRestaurants.filter((res)=>{
+            return res.info.name.toLowerCase().includes(searchText.toLowerCase());
+        });
+        setFilteredData(filtereddata);
+    };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: "body",
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                className: "search",
-                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
-                    className: "filter-btn",
-                    onClick: ()=>{
-                        const filteredList = listOfRestaurants.filter((res)=>res = res.info.avgRating > 4);
-                        setlistOfRestaurants(filteredList);
-                        console.log("BUtton clicked");
-                    },
-                    children: "Top Rated Restaurants"
-                }, void 0, false, {
-                    fileName: "src/components/Body.jsx",
-                    lineNumber: 146,
-                    columnNumber: 9
-                }, undefined)
-            }, void 0, false, {
+                className: "search-filter",
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        className: "search",
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
+                                type: "text",
+                                placeholder: "search the restaurants",
+                                onChange: (e)=>{
+                                    setSearchText(e.target.value);
+                                }
+                            }, void 0, false, {
+                                fileName: "src/components/Body.jsx",
+                                lineNumber: 140,
+                                columnNumber: 11
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                                className: "search-btn",
+                                onClick: search,
+                                children: "Search"
+                            }, void 0, false, {
+                                fileName: "src/components/Body.jsx",
+                                lineNumber: 143,
+                                columnNumber: 11
+                            }, undefined)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/components/Body.jsx",
+                        lineNumber: 139,
+                        columnNumber: 9
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                        className: "filter-btn",
+                        onClick: ()=>{
+                            const filteredList = listOfRestaurants.filter((res)=>res = res.info.avgRating > 4);
+                            setlistOfRestaurants(filteredList);
+                            console.log("BUtton clicked");
+                        },
+                        children: "Top Rated Restaurants"
+                    }, void 0, false, {
+                        fileName: "src/components/Body.jsx",
+                        lineNumber: 145,
+                        columnNumber: 9
+                    }, undefined)
+                ]
+            }, void 0, true, {
                 fileName: "src/components/Body.jsx",
-                lineNumber: 145,
+                lineNumber: 138,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27768,22 +27789,22 @@ const Body = ()=>{
                         resInfo: restaurant
                     }, restaurant.info.id, false, {
                         fileName: "src/components/Body.jsx",
-                        lineNumber: 174,
+                        lineNumber: 173,
                         columnNumber: 11
                     }, undefined))
             }, void 0, false, {
                 fileName: "src/components/Body.jsx",
-                lineNumber: 160,
+                lineNumber: 159,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/Body.jsx",
-        lineNumber: 143,
+        lineNumber: 136,
         columnNumber: 5
     }, undefined);
 };
-_s(Body, "kMT43ODGki7ra3lA5UXdz9Z/TR8=");
+_s(Body, "nA7BUw6Fq8A2833wuBafLYHf3K0=");
 _c = Body;
 exports.default = Body;
 var _c;

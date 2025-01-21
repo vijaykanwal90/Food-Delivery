@@ -169,7 +169,7 @@ const Body = () => {
               (res) => (res = res.info.avgRating > 4)
             );
             setlistOfRestaurants(filteredList);
-            console.log("BUtton clicked");
+            console.log("Button clicked");
           }}
         >
           Top Rated Restaurants

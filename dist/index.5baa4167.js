@@ -38051,6 +38051,9 @@ class UserClass extends (0, _reactDefault.default).Component {
                 bio: "about"
             }
         };
+        // this.setInterval (()=>{
+        //     console.log("Interval of " + this.props.name)
+        // },5000)
         console.log("Constructor of " + this.props.name);
     }
     async componentDidMount() {
@@ -38062,6 +38065,7 @@ class UserClass extends (0, _reactDefault.default).Component {
         });
     }
     componentWillUnmount() {
+        // clearInterval()
         console.log("Component Unmounted " + this.props.name);
     }
     render() {
@@ -38075,7 +38079,7 @@ class UserClass extends (0, _reactDefault.default).Component {
                     children: "Class based component"
                 }, void 0, false, {
                     fileName: "src/components/UserClass.js",
-                    lineNumber: 32,
+                    lineNumber: 36,
                     columnNumber: 8
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -38087,13 +38091,13 @@ class UserClass extends (0, _reactDefault.default).Component {
                             width: 250
                         }, void 0, false, {
                             fileName: "src/components/UserClass.js",
-                            lineNumber: 33,
+                            lineNumber: 37,
                             columnNumber: 37
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/UserClass.js",
-                    lineNumber: 33,
+                    lineNumber: 37,
                     columnNumber: 8
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
@@ -38103,7 +38107,7 @@ class UserClass extends (0, _reactDefault.default).Component {
                     ]
                 }, void 0, true, {
                     fileName: "src/components/UserClass.js",
-                    lineNumber: 35,
+                    lineNumber: 39,
                     columnNumber: 13
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
@@ -38113,13 +38117,13 @@ class UserClass extends (0, _reactDefault.default).Component {
                             children: location
                         }, void 0, false, {
                             fileName: "src/components/UserClass.js",
-                            lineNumber: 36,
+                            lineNumber: 40,
                             columnNumber: 23
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/UserClass.js",
-                    lineNumber: 36,
+                    lineNumber: 40,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h4", {
@@ -38130,13 +38134,13 @@ class UserClass extends (0, _reactDefault.default).Component {
                     ]
                 }, void 0, true, {
                     fileName: "src/components/UserClass.js",
-                    lineNumber: 37,
+                    lineNumber: 41,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "src/components/UserClass.js",
-            lineNumber: 31,
+            lineNumber: 35,
             columnNumber: 16
         }, this);
     }
@@ -38237,21 +38241,11 @@ var _constants = require("../utils/Constants");
 var _s = $RefreshSig$();
 const RestaurantMenu = ()=>{
     _s();
-    const [resInfo, setResInfo] = (0, _react.useState)(null);
     const { id } = (0, _reactRouter.useParams)();
-    console.log(id + " is ");
-    const fetchMenu = async ()=>{
-        const fetched = await fetch((0, _constants.MENU_API) + id);
-        const result = await fetched.json();
-        // console.log(result?.data)
-        setResInfo(result?.data);
-    };
-    (0, _react.useEffect)(()=>{
-        fetchMenu();
-    }, []);
+    const resInfo = useResutaurantMenu(resId);
     if (resInfo === null) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _shimmerDefault.default), {}, void 0, false, {
         fileName: "src/components/RestaurantMenu.jsx",
-        lineNumber: 25,
+        lineNumber: 15,
         columnNumber: 12
     }, undefined);
     const { name, cuisines, city, costForTwo, areaName } = resInfo.cards[2].card?.card?.info;
@@ -38265,7 +38259,7 @@ const RestaurantMenu = ()=>{
                 children: name
             }, void 0, false, {
                 fileName: "src/components/RestaurantMenu.jsx",
-                lineNumber: 34,
+                lineNumber: 24,
                 columnNumber: 9
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
@@ -38276,14 +38270,14 @@ const RestaurantMenu = ()=>{
                 ]
             }, void 0, true, {
                 fileName: "src/components/RestaurantMenu.jsx",
-                lineNumber: 36,
+                lineNumber: 26,
                 columnNumber: 9
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
                 children: cuisines.join(", ")
             }, void 0, false, {
                 fileName: "src/components/RestaurantMenu.jsx",
-                lineNumber: 37,
+                lineNumber: 27,
                 columnNumber: 9
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h3", {
@@ -38294,14 +38288,14 @@ const RestaurantMenu = ()=>{
                 ]
             }, void 0, true, {
                 fileName: "src/components/RestaurantMenu.jsx",
-                lineNumber: 38,
+                lineNumber: 28,
                 columnNumber: 9
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h3", {
                 children: itemCard.title
             }, void 0, false, {
                 fileName: "src/components/RestaurantMenu.jsx",
-                lineNumber: 39,
+                lineNumber: 29,
                 columnNumber: 9
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("ul", {
@@ -38317,29 +38311,29 @@ const RestaurantMenu = ()=>{
                                 children: item.card.info.category
                             }, void 0, false, {
                                 fileName: "src/components/RestaurantMenu.jsx",
-                                lineNumber: 43,
+                                lineNumber: 33,
                                 columnNumber: 35
                             }, undefined)
                         ]
                     }, item.card.info.id, true, {
                         fileName: "src/components/RestaurantMenu.jsx",
-                        lineNumber: 42,
+                        lineNumber: 32,
                         columnNumber: 22
                     }, undefined);
                 })
             }, void 0, false, {
                 fileName: "src/components/RestaurantMenu.jsx",
-                lineNumber: 40,
+                lineNumber: 30,
                 columnNumber: 9
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/RestaurantMenu.jsx",
-        lineNumber: 33,
+        lineNumber: 23,
         columnNumber: 5
     }, undefined);
 };
-_s(RestaurantMenu, "G3Zj3/ps/A17ynmCz8veMjPZwuY=", false, function() {
+_s(RestaurantMenu, "9v2DoP+RH+48oBsxtKh5bW4BG7s=", true, function() {
     return [
         (0, _reactRouter.useParams)
     ];

@@ -12,6 +12,9 @@ class UserClass extends React.Component {
 
             }
         }
+        // this.setInterval (()=>{
+        //     console.log("Interval of " + this.props.name)
+        // },5000)
         console.log("Constructor of " + this.props.name)
     }
     async componentDidMount(){
@@ -22,6 +25,7 @@ class UserClass extends React.Component {
 
     }
     componentWillUnmount(){
+        // clearInterval()
         console.log("Component Unmounted " + this.props.name)
     }
     render (){

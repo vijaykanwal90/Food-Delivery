@@ -1,6 +1,6 @@
 import RestaurantCard from "./RestaurantCard";
 import resList from "../utils/RestaurantData";
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { redirect } from "react-router";
 import { Link } from "react-router";
@@ -99,26 +99,28 @@ const Body = () => {
   ];
   const [listOfRestaurants, setlistOfRestaurants] = useState([]);
   const [searchText, setSearchText] = useState("")
-  const [filteredData, setFilteredData]  = useState([])
-  const fetchData = async()=>{
-    try{
+  const [filteredData, setFilteredData] = useState([])
+  const fetchData = async () => {
+    try {
       const response = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.7040592&lng=77.10249019999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
-              const result = await response.json()
-      
+      const result = await response.json()
+
       console.log(result)
       // console.log(result.data.cards[0].card.card.gridElements.infoWithStyle.restaurants)
       setlistOfRestaurants(result.data.cards[1].card.card.gridElements.infoWithStyle.restaurants)
-    }
-    catch(error){
-       console.log("fetching error" + error.message)
-    }
-    
-  } 
-  useEffect(()=>{
-      fetchData()
 
-  },[])
-  const restaurantMenu = () =>{
+      console.log(listOfRestaurants[0].info.id)
+    }
+    catch (error) {
+      console.log("fetching error" + error.message)
+    }
+
+  }
+  useEffect(() => {
+    fetchData()
+
+  }, [])
+  const restaurantMenu = () => {
     console.log("clicked")
   }
   // useEffect (()=>{
@@ -136,28 +138,28 @@ const Body = () => {
   // },[searchText]) this useEffect will be called when searchText updates
 
 
-  if(listOfRestaurants.length===0){
+  if (listOfRestaurants.length === 0) {
     return (
       // <div>Loading..........</div>
-      <Shimmer/>
+      <Shimmer />
     )
   }
-  const search = ()=>{
+  const search = () => {
     console.log(listOfRestaurants[0].info.name)
     // fetchData()
     // setlistOfRestaurants(result.data.cards[1].card.card.gridElements.infoWithStyle.restaurants)
-      
-     const filtereddata = listOfRestaurants.filter((res)=>{
-        return res.info.name.toLowerCase().includes(searchText.toLowerCase())
-     })
-     setFilteredData(filtereddata)
+
+    const filtereddata = listOfRestaurants.filter((res) => {
+      return res.info.name.toLowerCase().includes(searchText.toLowerCase())
+    })
+    setFilteredData(filtereddata)
   }
   return (
     <div className="body">
       {/* <Shimmer/> */}
       <div className="search-filter">
         <div className="search">
-          <input type="text" placeholder="search the restaurants" onChange={(e)=>{
+          <input type="text" placeholder="search the restaurants" onChange={(e) => {
             setSearchText(e.target.value)
           }} />
           <button className="search-btn" onClick={search} >Search</button>
@@ -190,8 +192,8 @@ const Body = () => {
                  <RestaurantCard  resInfo={resData[5]}/> */}
 
         {listOfRestaurants.map((restaurant) => (
-         <Link key={restaurant.info.id} style={{textDecoration:"none",color:"inherit"}}
-         to={"/restaurant/" + restaurant.info.id}> <RestaurantCard resInfo={restaurant}> </RestaurantCard></Link>
+          <Link key={restaurant.info.id} style={{ textDecoration: "none", color: "inherit" }}
+            to={"/restaurant/" + restaurant.info.id}> <RestaurantCard resInfo={restaurant}> </RestaurantCard></Link>
         ))}
       </div>
     </div>

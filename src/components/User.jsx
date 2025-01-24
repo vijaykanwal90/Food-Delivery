@@ -1,10 +1,11 @@
 import React from 'react'
 
-const User = () => {
+const User = (props) => {
   return (
     <div className="user-card">
-        <h2>Name: Vijay Kanwal</h2>
-        <h2>Location: Almora</h2>
+      <h3>Function based component</h3>
+        <h2>Name: {props.name}</h2>
+        <h2>Location: {props.name}</h2>
         <h4>Contact : vijaykanwal18</h4>
     </div>
   )

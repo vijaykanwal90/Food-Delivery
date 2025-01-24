@@ -90,7 +90,24 @@
 }
 
 .user-card {
-  border: 3px solid #000;
+  border: 2px solid #000;
+  border-radius: 10px;
+  width: 350px;
+  height: 450px;
+  margin: 20px;
   padding: 10px;
+}
+
+.user-image {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.user-container {
+  direction: flex-column;
+  justify-content: center;
+  align-items: center;
+  display: flex;
 }
 /*# sourceMappingURL=index.9e4c6fd2.css.map */

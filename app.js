@@ -1,4 +1,4 @@
-import React from "react"
+import React , {lazy , Suspense} from "react"
 import ReactDOM from "react-dom/client"
 import Header from "./src/components/Header"
 import Body from "./src/components/Body"
@@ -8,6 +8,7 @@ import Error from "./src/components/Error"
 import { createBrowserRouter,RouterProvider } from "react-router";
 import { Outlet } from "react-router"
 import RestaurantMenu from "./src/components/RestaurantMenu"
+
 /*
 Header 
     Logo
@@ -30,9 +31,10 @@ Footer
 // }
 // way to give css
 
-
+const Groccery  = lazy(()=>import("./src/components/Groccery"))
 
 const AppLayout = ()=>{
+
     return (
         <div className="app">
             <Header/>
@@ -59,6 +61,11 @@ const appRouter =createBrowserRouter([
                 path:"/",
                 element:<Body/>
             },
+            {
+                path:"/groccery",
+                element: <Suspense fallback={<h1>Loading ........</h1>}><Groccery/></Suspense>
+            },
+
             {
                 path:"/restaurant/:id",
                 element:<RestaurantMenu/>

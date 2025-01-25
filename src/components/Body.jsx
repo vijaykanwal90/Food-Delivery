@@ -3,6 +3,7 @@ import resList from "../utils/RestaurantData";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { redirect } from "react-router";
+import useOnlineStatus from "../utils/useOnlineStatus";
 import { Link } from "react-router";
 const Body = () => {
   const newResData = [
@@ -107,9 +108,9 @@ const Body = () => {
 
       console.log(result)
       // console.log(result.data.cards[0].card.card.gridElements.infoWithStyle.restaurants)
-      setlistOfRestaurants(result.data.cards[1].card.card.gridElements.infoWithStyle.restaurants)
-
-      console.log(listOfRestaurants[0].info.id)
+      setlistOfRestaurants(result?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+      console.log(result?.data.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+      console.log(listOfRestaurants[0]?.info?.name)
     }
     catch (error) {
       console.log("fetching error" + error.message)
@@ -120,9 +121,7 @@ const Body = () => {
     fetchData()
 
   }, [])
-  const restaurantMenu = () => {
-    console.log("clicked")
-  }
+ 
   // useEffect (()=>{
 
   // }) this useEffect will be called on every render
@@ -136,14 +135,6 @@ const Body = () => {
   // useEffect (()=>{
 
   // },[searchText]) this useEffect will be called when searchText updates
-
-
-  if (listOfRestaurants.length === 0) {
-    return (
-      // <div>Loading..........</div>
-      <Shimmer />
-    )
-  }
   const search = () => {
     console.log(listOfRestaurants[0].info.name)
     // fetchData()
@@ -154,49 +145,63 @@ const Body = () => {
     })
     setFilteredData(filtereddata)
   }
-  return (
-    <div className="body">
-      {/* <Shimmer/> */}
-      <div className="search-filter">
-        <div className="search">
-          <input type="text" placeholder="search the restaurants" onChange={(e) => {
-            setSearchText(e.target.value)
-          }} />
-          <button className="search-btn" onClick={search} >Search</button>
-        </div>
-        <button
-          className="filter-btn"
-          onClick={() => {
-            const filteredList = listOfRestaurants.filter(
-              (res) => (res = res.info.avgRating > 4)
-            );
-            setlistOfRestaurants(filteredList);
-            console.log("Button clicked");
-          }}
-        >
-          Top Rated Restaurants
-        </button>
-      </div>
 
-      <div className="res-container">
-        {/* Restaurant card
+  const onlineStatus = useOnlineStatus()
+  console.log("status of online is " + onlineStatus)
+  if (onlineStatus === false) {
+    return (
+      <h1>Looks like you are offline Please check your connection </h1>
+    )
+  }
+
+
+
+  return  listOfRestaurants.length === 0 ? (
+    <Shimmer />)
+    :
+    (
+      <div className="body">
+        {/* <Shimmer/> */}
+        <div className="search-filter">
+          <div className="search">
+            <input type="text" placeholder="search the restaurants" onChange={(e) => {
+              setSearchText(e.target.value)
+            }} />
+            <button className="search-btn" onClick={search} >Search</button>
+          </div>
+          <button
+            className="filter-btn"
+            onClick={() => {
+              const filteredList = listOfRestaurants.filter(
+                (res) => (res = res.info.avgRating > 4)
+              );
+              setlistOfRestaurants(filteredList);
+              console.log("Button clicked");
+            }}
+          >
+            Top Rated Restaurants
+          </button>
+        </div>
+
+        <div className="res-container">
+          {/* Restaurant card
          */}
-        {/* <RestaurantCard name="Meghna Foods" cusines="Biryani , Chinese, Indian"/>
+          {/* <RestaurantCard name="Meghna Foods" cusines="Biryani , Chinese, Indian"/>
                  <RestaurantCard name="KFC" cusines="Chicken wings , Burger"/> */}
-        {/* <RestaurantCard name={resData[0].info.name}/> */}
-        {/* <RestaurantCard  resInfo={resData[0]}/>
+          {/* <RestaurantCard name={resData[0].info.name}/> */}
+          {/* <RestaurantCard  resInfo={resData[0]}/>
                  <RestaurantCard  resInfo={resData[1]}/>
                  <RestaurantCard  resInfo={resData[2]}/>
                  <RestaurantCard  resInfo={resData[3]}/>
                  <RestaurantCard  resInfo={resData[4]}/>
                  <RestaurantCard  resInfo={resData[5]}/> */}
 
-        {listOfRestaurants.map((restaurant) => (
-          <Link key={restaurant.info.id} style={{ textDecoration: "none", color: "inherit" }}
-            to={"/restaurant/" + restaurant.info.id}> <RestaurantCard resInfo={restaurant}> </RestaurantCard></Link>
-        ))}
+          {listOfRestaurants.map((restaurant) => (
+            <Link key={restaurant.info.id} style={{ textDecoration: "none", color: "inherit" }}
+              to={"/restaurant/" + restaurant.info.id}> <RestaurantCard resInfo={restaurant}> </RestaurantCard></Link>
+          ))}
+        </div>
       </div>
-    </div>
-  );
+    );
 };
 export default Body;

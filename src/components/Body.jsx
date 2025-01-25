@@ -160,17 +160,17 @@ const Body = () => {
     <Shimmer />)
     :
     (
-      <div className="body">
+      <div className=" flex flex-col m-4 ">
         {/* <Shimmer/> */}
-        <div className="search-filter">
+        <div className="flex item-center px-6 ">
           <div className="search">
-            <input type="text" placeholder="search the restaurants" onChange={(e) => {
+            <input className="border border-solid border-black px-2" type="text" placeholder="search the restaurants" onChange={(e) => {
               setSearchText(e.target.value)
             }} />
-            <button className="search-btn" onClick={search} >Search</button>
+            <button className="border border-solid border-black bg-amber-500 px-4 m-4 rounded-lg hover:cursor-pointer" onClick={search} >Search</button>
           </div>
-          <button
-            className="filter-btn"
+          <button className="border border-solid border-black bg-amber-500 px-4 m-4 rounded-lg hover:cursor-pointer"
+            
             onClick={() => {
               const filteredList = listOfRestaurants.filter(
                 (res) => (res = res.info.avgRating > 4)
@@ -183,7 +183,7 @@ const Body = () => {
           </button>
         </div>
 
-        <div className="res-container">
+        <div className="flex flex-wrap gap-4">
           {/* Restaurant card
          */}
           {/* <RestaurantCard name="Meghna Foods" cusines="Biryani , Chinese, Indian"/>

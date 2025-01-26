@@ -12,7 +12,9 @@ const RestaurantMenu = () => {
   const resInfo = useRestaurantMenu(id)
   // console.log("in ui resinfo")
   // console.log(resInfo)
+  const [showItem,setShowItem] = useState(false)
   const [showIndex,setShowIndex] = useState(null)
+
 
 
   if (resInfo === null) {
@@ -21,26 +23,32 @@ const RestaurantMenu = () => {
   // const { name, cuisines, city, costForTwo, areaName,completeAddress } = resInfo.cards[2].card?.card?.info
   console.log(resInfo)
   const {name} = resInfo?.cards[2]?.card?.card?.info
-  const itemCard = resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR.cards[2]?.card?.card
-  console.log(resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR.cards)
+  // const itemCard = resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR.cards[2]?.card?.card
+  // console.log(resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR.cards)
   const categories = resInfo?.cards[4].groupedCard?.cardGroupMap.REGULAR?.cards.filter((category) =>
     category?.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory")
-
+console.log("show item in menu ",showItem)
  
   return (
     <div className='text-center'>
-      
-
-      
       <h1 className='my-10 font-bold text-2xl'>{name}</h1>
-
       {categories.map((category,index)=>{
             return (
               <RestaurantCategory
                 key = {category.card.card.title}
                  data ={category?.card?.card}
-                 showItem={index===showIndex && true}
-                 setShowIndex={ ()=>setShowIndex(index)}
+                //  showIndex= {showIndex}
+                //  setShowIndex={()=>
+                 
+                //   setShowIndex(index)
+                //  }
+                //  showItem={showIndex===index && showItem}
+                 
+                //  setShowItem={()=>
+                //   setShowItem(!showItem)}
+                showItem={showIndex === index} // Show items if the current index matches showIndex
+                setShowIndex={() => setShowIndex(showIndex === index ? null : index)}
+                
 
                  />
             )

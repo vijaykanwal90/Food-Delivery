@@ -1,11 +1,17 @@
 import React from 'react'
 import ItemList from './ItemList'
 import { useState } from 'react'
-const RestaurantCategory = ({ data , showItem ,setShowIndex}) => {
+const RestaurantCategory = ({ data , showItem,setShowIndex}) => {
     // const [showItems ,setShowItems] = useState(false)
     //   const [showItems,setShowItems] = useState(false)
     
     const handleClick = ()=>{
+        // setShowItem(!showItem)
+        console.log("clicked")
+        console.log(showItem)
+        // setShowItem(!showItem)
+        // setShowItem()
+
         setShowIndex()
     }
     // console.log("this is list of restuarunt category", data)
@@ -20,8 +26,7 @@ const RestaurantCategory = ({ data , showItem ,setShowIndex}) => {
 
             </div>
             <div className='flex flex-col items-center w-6/12 mx-auto  '>
-            {
-                showItem && 
+            {showItem && 
                 <ItemList
                  key={data.title} 
                  item={data.itemCards}

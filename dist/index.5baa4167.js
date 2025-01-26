@@ -38383,18 +38383,20 @@ const RestaurantMenu = ()=>{
     const resInfo = (0, _useRestaurantMenuDefault.default)(id);
     // console.log("in ui resinfo")
     // console.log(resInfo)
+    const [showItem, setShowItem] = (0, _react.useState)(false);
     const [showIndex, setShowIndex] = (0, _react.useState)(null);
     if (resInfo === null) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _shimmerDefault.default), {}, void 0, false, {
         fileName: "src/components/RestaurantMenu.jsx",
-        lineNumber: 19,
+        lineNumber: 21,
         columnNumber: 12
     }, undefined);
     // const { name, cuisines, city, costForTwo, areaName,completeAddress } = resInfo.cards[2].card?.card?.info
     console.log(resInfo);
     const { name } = resInfo?.cards[2]?.card?.card?.info;
-    const itemCard = resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR.cards[2]?.card?.card;
-    console.log(resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR.cards);
+    // const itemCard = resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR.cards[2]?.card?.card
+    // console.log(resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR.cards)
     const categories = resInfo?.cards[4].groupedCard?.cardGroupMap.REGULAR?.cards.filter((category)=>category?.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory");
+    console.log("show item in menu ", showItem);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: "text-center",
         children: [
@@ -38403,28 +38405,35 @@ const RestaurantMenu = ()=>{
                 children: name
             }, void 0, false, {
                 fileName: "src/components/RestaurantMenu.jsx",
-                lineNumber: 35,
+                lineNumber: 34,
                 columnNumber: 7
             }, undefined),
             categories.map((category, index)=>{
                 return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _restaurantCategoryDefault.default), {
                     data: category?.card?.card,
-                    showItem: index === showIndex && true,
-                    setShowIndex: ()=>setShowIndex(index)
+                    //  showIndex= {showIndex}
+                    //  setShowIndex={()=>
+                    //   setShowIndex(index)
+                    //  }
+                    //  showItem={showIndex===index && showItem}
+                    //  setShowItem={()=>
+                    //   setShowItem(!showItem)}
+                    showItem: showIndex === index,
+                    setShowIndex: ()=>setShowIndex(showIndex === index ? null : index)
                 }, category.card.card.title, false, {
                     fileName: "src/components/RestaurantMenu.jsx",
-                    lineNumber: 39,
+                    lineNumber: 37,
                     columnNumber: 15
                 }, undefined);
             })
         ]
     }, void 0, true, {
         fileName: "src/components/RestaurantMenu.jsx",
-        lineNumber: 31,
+        lineNumber: 33,
         columnNumber: 5
     }, undefined);
 };
-_s(RestaurantMenu, "COVazmD/fNNFNkbSOg7Jfd+InJk=", false, function() {
+_s(RestaurantMenu, "RX4+9ESZxRWKZYo5DUUF6dywEfM=", false, function() {
     return [
         (0, _reactRouter.useParams),
         (0, _useRestaurantMenuDefault.default)
@@ -38493,6 +38502,11 @@ const RestaurantCategory = ({ data, showItem, setShowIndex })=>{
     // const [showItems ,setShowItems] = useState(false)
     //   const [showItems,setShowItems] = useState(false)
     const handleClick = ()=>{
+        // setShowItem(!showItem)
+        console.log("clicked");
+        console.log(showItem);
+        // setShowItem(!showItem)
+        // setShowItem()
         setShowIndex();
     };
     // console.log("this is list of restuarunt category", data)
@@ -38512,20 +38526,20 @@ const RestaurantCategory = ({ data, showItem, setShowIndex })=>{
                         ]
                     }, void 0, true, {
                         fileName: "src/components/RestaurantCategory.jsx",
-                        lineNumber: 16,
+                        lineNumber: 22,
                         columnNumber: 21
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
                         children: "\u2B07\uFE0F"
                     }, void 0, false, {
                         fileName: "src/components/RestaurantCategory.jsx",
-                        lineNumber: 17,
+                        lineNumber: 23,
                         columnNumber: 21
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/RestaurantCategory.jsx",
-                lineNumber: 14,
+                lineNumber: 20,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -38534,18 +38548,18 @@ const RestaurantCategory = ({ data, showItem, setShowIndex })=>{
                     item: data.itemCards
                 }, data.title, false, {
                     fileName: "src/components/RestaurantCategory.jsx",
-                    lineNumber: 25,
+                    lineNumber: 30,
                     columnNumber: 17
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/RestaurantCategory.jsx",
-                lineNumber: 22,
+                lineNumber: 28,
                 columnNumber: 13
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/RestaurantCategory.jsx",
-        lineNumber: 13,
+        lineNumber: 19,
         columnNumber: 9
     }, undefined);
 };

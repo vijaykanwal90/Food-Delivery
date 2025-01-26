@@ -1,9 +1,10 @@
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard , {withPromotedLabel} from "./RestaurantCard";
 import resList from "../utils/RestaurantData";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { redirect } from "react-router";
 import useOnlineStatus from "../utils/useOnlineStatus";
+
 import { Link } from "react-router";
 const Body = () => {
   const newResData = [
@@ -101,9 +102,11 @@ const Body = () => {
   const [listOfRestaurants, setlistOfRestaurants] = useState([]);
   const [searchText, setSearchText] = useState("")
   const [filteredData, setFilteredData] = useState([])
+  const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
   const fetchData = async () => {
     try {
       const response = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.7040592&lng=77.10249019999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
+      // const response = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.7040592&lng=77.10249019999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
       const result = await response.json()
 
       console.log(result)
@@ -121,7 +124,7 @@ const Body = () => {
     fetchData()
 
   }, [])
- 
+
   // useEffect (()=>{
 
   // }) this useEffect will be called on every render
@@ -156,7 +159,7 @@ const Body = () => {
 
 
 
-  return  listOfRestaurants.length === 0 ? (
+  return listOfRestaurants.length === 0 ? (
     <Shimmer />)
     :
     (
@@ -170,7 +173,7 @@ const Body = () => {
             <button className="border border-solid border-black bg-amber-500 px-4 m-4 rounded-lg hover:cursor-pointer" onClick={search} >Search</button>
           </div>
           <button className="border border-solid border-black bg-amber-500 px-4 m-4 rounded-lg hover:cursor-pointer"
-            
+
             onClick={() => {
               const filteredList = listOfRestaurants.filter(
                 (res) => (res = res.info.avgRating > 4)
@@ -198,7 +201,10 @@ const Body = () => {
 
           {listOfRestaurants.map((restaurant) => (
             <Link key={restaurant.info.id} style={{ textDecoration: "none", color: "inherit" }}
-              to={"/restaurant/" + restaurant.info.id}> <RestaurantCard resInfo={restaurant}> </RestaurantCard></Link>
+              to={"/restaurant/" + restaurant.info.id}>
+                {restaurant.info.isOpen ? <RestaurantCardPromoted resInfo={restaurant}/> : <RestaurantCard resInfo={restaurant}/>}
+                 
+                 </Link>
           ))}
         </div>
       </div>

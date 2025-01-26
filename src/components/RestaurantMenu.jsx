@@ -4,6 +4,7 @@ import Shimmer from './Shimmer'
 import { useParams } from 'react-router';
 import { MENU_API, CDN_LINK } from "../utils/Constants"
 import useRestaurantMenu from '../utils/useRestaurantMenu';
+import RestaurantCategory from './RestaurantCategory';
 const RestaurantMenu = () => {
 
   const { id } = useParams();
@@ -11,45 +12,43 @@ const RestaurantMenu = () => {
   const resInfo = useRestaurantMenu(id)
   // console.log("in ui resinfo")
   // console.log(resInfo)
-
-
+  const [showIndex,setShowIndex] = useState(null)
 
 
   if (resInfo === null) {
     return <Shimmer />
   }
-  const { name, cuisines, city, costForTwo, areaName } = resInfo.cards[2].card?.card?.info
+  // const { name, cuisines, city, costForTwo, areaName,completeAddress } = resInfo.cards[2].card?.card?.info
+  console.log(resInfo)
+  const {name} = resInfo?.cards[2]?.card?.card?.info
   const itemCard = resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR.cards[2]?.card?.card
-  const recomendeddish = itemCard?.itemCards || itemCard?.categories[0].itemCards
-  console.log(itemCard)
-  console.log("recommended dish")
-  console.log(recomendeddish)
-  // console.log(resInfo?.cards[4].groupedCard.cardGroupMap.REGULAR.cards[2])
+  console.log(resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR.cards)
+  const categories = resInfo?.cards[4].groupedCard?.cardGroupMap.REGULAR?.cards.filter((category) =>
+    category?.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory")
+
+ 
   return (
-    <div>
-      <h1>{name}</h1>
-      {/* <div><img src={CDN_LINK +imageId} alt="" /></div> */}
-      <h2>{areaName} - {city}</h2>
-      <h2>{cuisines.join(", ")}</h2>
-      <h3> Rs.{costForTwo / 100} for two</h3>
-      <h3>{itemCard.title}</h3>
-     
-        
-         
-            <div className='res-recommended'>
-            {recomendeddish.map((item) => (
-          <li key={item?.card?.info?.id}>
-            {item?.card?.info?.name} <span style={{ color: item?.card?.info.isVeg === 1 ? "green" : "red" }}>
-              {item?.card?.info?.category}
-            </span>
+    <div className='text-center'>
+      
 
-          </li>
-            ))}
-          </div>
-          
-    
+      
+      <h1 className='my-10 font-bold text-2xl'>{name}</h1>
 
-    
+      {categories.map((category,index)=>{
+            return (
+              <RestaurantCategory
+                key = {category.card.card.title}
+                 data ={category?.card?.card}
+                 showItem={index===showIndex && true}
+                 setShowIndex={ ()=>setShowIndex(index)}
+
+                 />
+            )
+      })}
+
+
+
+
     </div>
   )
 }
